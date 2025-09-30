@@ -2,6 +2,13 @@ name: Simple Push Workflow
 
 on:
   push:
+    branches:
+      - main
+    tags:
+      - '*'           # triggers on any tag push
+    paths:
+      - 'src/**'
+      - 'package.json'
 
 jobs:
   build:
