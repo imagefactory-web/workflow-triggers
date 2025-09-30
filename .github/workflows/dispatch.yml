@@ -2,10 +2,21 @@ name: Manual Workflow Dispatch
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - test
 
 jobs:
   run-manually:
     runs-on: ubuntu-latest
     steps:
+      - name: Echo selected environment
+        run: echo "Selected environment: ${{ github.event.inputs.environment }}"
       - name: Echo message
         run: echo "This workflow was triggered manually using workflow_dispatch."
